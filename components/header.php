@@ -26,6 +26,25 @@ if (!defined('BASE_URL')) {
             <a href="<?= BASE_URL ?>/public/index.php" class="text-xl font-bold text-primary" style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">
                 ElectroShop
             </a>
+            
+            <nav class="desktop-nav">
+                <a href="<?= BASE_URL ?>/public/index.php">Home</a>
+                <a href="<?= BASE_URL ?>/public/products.php">Products</a>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <?php if ($_SESSION['role'] === 'admin'): ?>
+                        <a href="<?= BASE_URL ?>/admin/dashboard.php">Dashboard</a>
+                        <a href="<?= BASE_URL ?>/admin/products.php">Products</a>
+                        <a href="<?= BASE_URL ?>/admin/orders.php">Orders</a>
+                        <a href="<?= BASE_URL ?>/admin/users.php">Users</a>
+                    <?php else: ?>
+                        <a href="<?= BASE_URL ?>/customer/dashboard.php">Dashboard</a>
+                        <a href="<?= BASE_URL ?>/customer/orders.php">My Orders</a>
+                    <?php endif; ?>
+                    <a href="<?= BASE_URL ?>/auth/logout.php" style="color: #ef4444;">Logout</a>
+                <?php else: ?>
+                    <a href="<?= BASE_URL ?>/auth/login.php">Login</a>
+                <?php endif; ?>
+            </nav>
         </div>
         
         <div class="flex items-center gap-4">
